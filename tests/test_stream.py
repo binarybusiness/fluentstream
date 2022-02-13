@@ -1,4 +1,4 @@
-from fluentstream.pystream import Stream
+from fluentstream.stream import Stream
 
 
 def test_filter():

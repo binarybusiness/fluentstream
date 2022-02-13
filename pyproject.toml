@@ -2,9 +2,9 @@
 name = "fluentstream"
 version = "0.1.0"
 description = "A stream abstraction with a fluent interface. Inspired by Java 8 streams."
-authors = ["Mikael Moghadam <binarybusiness@gmail.com>"]
+authors = ["Binary Business <binarybusiness@gmail.com>"]
 readme = "README.md"
-#repository =
+repository = "https://github.com/binarybusiness/fluentstream.git"
 
 [tool.poetry.dependencies]
 python = "^3.8"
