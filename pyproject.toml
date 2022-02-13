@@ -2,7 +2,7 @@
 name = "fluentstream"
 version = "0.1.0"
 description = "A stream abstraction with a fluent interface. Inspired by Java 8 streams."
-authors = ["Binary Business <binarybusiness@gmail.com>"]
+authors = ["Mikael M <binarybusiness@gmail.com>"]
 readme = "README.md"
 repository = "https://github.com/binarybusiness/fluentstream.git"
 
