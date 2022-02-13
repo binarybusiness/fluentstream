@@ -1,3 +1,5 @@
+import operator
+
 from fluentstream.stream import Stream
 
 
@@ -67,3 +69,19 @@ def test_limit():
 
 def test_skip():
     assert Stream([1, 2, 3, 4, 5, 6, 7]).skip(5).list() == [6, 7]
+
+
+def test_fold():
+    assert Stream([1, 2, 3, 4, 5]).fold(lambda x, y: x + y) == 15
+    assert Stream([1, 2, 3, 4, 5]).fold(operator.add) == 15
+    assert Stream([1, 2, 3, 4]).fold(operator.mul) == 24
+
+
+def test_zip():
+    assert Stream([1, 2, 3]).zip(Stream(['a', 'b', 'c'])).list() == [(1, 'a'), (2, 'b'), (3, 'c')]
+    assert Stream([1, 2]).zip(Stream(['a', 'b', 'c'])).list() == [(1, 'a'), (2, 'b')]
+    assert Stream([1, 2, 3]).zip(Stream(['a'])).list() == [(1, 'a')]
+
+
+def test_emit():
+    assert [i for i in Stream([1, 2, 3]).emit()] == [1, 2, 3]

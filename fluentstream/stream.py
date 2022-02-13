@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from functools import reduce
 from typing import TypeVar, Generic, Optional, List, Callable, Dict, Any, Set, Collection, Generator
 
 T = TypeVar('T')
@@ -78,9 +79,9 @@ class Stream(Generic[T]):
             d[f(i)] = i
         return d
 
-    def take(self, start: int, step: int, cnt: int,) -> Stream[T]:
+    def take(self, start: int, step: int, cnt: int, ) -> Stream[T]:
         cnt = min(len(self.stream) - start, cnt)
-        return Stream(self.stream[start:start+cnt:step])
+        return Stream(self.stream[start:start + cnt:step])
 
     def limit(self, cnt: int) -> Stream[T]:
         return self.take(start=0, step=1, cnt=cnt)
@@ -88,14 +89,14 @@ class Stream(Generic[T]):
     def skip(self, cnt: int) -> Stream[T]:
         return self.take(start=cnt, step=1, cnt=len(self.stream))
 
-    def chop(self):
-        pass
+    def concat(self, i: Stream[T]) -> Stream[T]:
+        return Stream(list(self.stream) + list(i.stream))
 
-    def fold(self):
-        pass
+    def fold(self, f: Callable[[T, T], Y]) -> Y:
+        return reduce(f, self.stream[1:], list(self.stream)[0])
 
     def zip(self, i: Stream[Y]) -> Stream[(T, Y)]:
-        pass
+        return Stream(coll=list(zip(self.stream, i.list())))
 
     def emit(self) -> Generator[T]:
         for i in self.stream:
