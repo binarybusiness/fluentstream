@@ -1,5 +1,5 @@
-# fluentstream
-
+# fluent stream
+ 
 A stream abstraction with a fluent interface. Inspired by Java 8 streams, but a lot simpler and not lazy. 
 It allows you to express something like: 
 
