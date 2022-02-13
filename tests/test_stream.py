@@ -85,3 +85,10 @@ def test_zip():
 
 def test_emit():
     assert [i for i in Stream([1, 2, 3]).emit()] == [1, 2, 3]
+
+
+def test_multiple_stream_operations():
+    assert Stream([1, 2, 3, 4, 5, 6, 7, 8, 9]) \
+               .filter(lambda x: x % 2 == 0) \
+               .map(lambda x: x + 0.5) \
+               .fold(lambda x, y: x + y) == 27.5
